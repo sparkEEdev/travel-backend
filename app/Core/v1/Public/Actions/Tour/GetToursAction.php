@@ -5,7 +5,6 @@ namespace App\Core\v1\Public\Actions\Tour;
 use App\Models\Tour;
 use App\Concerns\FormatMoney;
 use App\Core\v1\Public\Requests\Tour\GetToursRequest;
-use App\Core\v1\Public\Resources\Tour\TourCollection;
 use Illuminate\Http\JsonResponse;
 
 class GetToursAction
@@ -13,6 +12,7 @@ class GetToursAction
     public function execute(GetToursRequest $request): JsonResponse
     {
         $tours = Tour::with(['travel', 'travel.moods'])
+            // ->whereHas('travel', fn($query) => $query->public())
             ->when($request->filled('travel'), function ($query) use ($request) {
                 $query->whereTravelSlug($request->get('travel'));
             })

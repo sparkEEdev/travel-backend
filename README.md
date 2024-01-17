@@ -18,10 +18,11 @@ The project utilizes Request-Docs package, after setup you can visit the `/reque
 - EDITOR
     - email: bar@foo.com
     - password: 12345678
-    
+
 #### Structure
 The core business logic is located in `App\Core` directory, resembling feature-based structure.
 
 #### Notes
 - Default Laravel db columns are still `snake_case` due to built in auth behaviour, everything else, custom is `camelCase`.
 - Updating a travel duration does not alter tour duration and name.
+- Fetching only tours with published travels is not enabled in the code due to randomness it produced in the unit test results.
